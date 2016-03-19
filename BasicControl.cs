@@ -5,17 +5,11 @@ public class BasicControl : MonoBehaviour {
 
     public static class Globals{
 
-     public static float rotX, rotY, rotZ, speed, roll = 0f;
+     public static float rotX, rotY, rotZ, speed, roll, rise = 0f;
 
 }
 	// Update is called once per frame
 	void Update () {
-
-        
-
-        Globals.rotX = Globals.rotX + 0.0005f * (Input.mousePosition.x-500); //Gets mouse X
-        Globals.rotY = Globals.rotY - 0.001f * (Input.mousePosition.y-200); //Gets mouse Y
-        
 
         if(Input.GetKeyDown("w"))
         {
@@ -27,20 +21,33 @@ public class BasicControl : MonoBehaviour {
         }
         if (Input.GetKeyDown("a"))
         {
-            Globals.roll = -1;
+            Globals.roll = -0.3f;
         }
         if (Input.GetKeyDown("d"))
         {
-            Globals.roll = 1;
+            Globals.roll = 0.3f;
         }
         if (Input.GetKeyUp("d") || Input.GetKeyUp("a"))
         {
             Globals.roll = 0;
         }
+        if (Input.GetKeyDown("q"))
+        {
+            Globals.rise = -0.3f;
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            Globals.rise = 0.3f;
+        }
+        if (Input.GetKeyUp("q") || Input.GetKeyUp("e"))
+        {
+            Globals.rise = 0;
+        }
 
-        Globals.rotZ = Globals.rotZ + Globals.roll;
 
-        transform.eulerAngles = new Vector3(Globals.rotY, Globals.rotX, Globals.rotZ); //Rotates object to mouse position
+ 
+
+        transform.Rotate(new Vector3(Globals.rise, 0, Globals.roll)); //Rotates object to mouse position
         Vector3 velVec = Vector3.forward * Globals.speed;
         transform.Translate(velVec);
 	}
