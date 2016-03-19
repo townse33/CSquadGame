@@ -19,9 +19,18 @@ public class PlanetGen : MonoBehaviour {
 
         ranMat = ranMat.Substring(17);
 
-        int EndStr = ranMat.Length-4;
+        int EndStr = ranMat.Length-5;
 
-        ranMat = ranMat.Substring(0, EndStr);
+        string endMat = ranMat.Substring(EndStr);
+
+        if(endMat == ".meta")
+        {
+            ranMat = ranMat.Substring(0,EndStr-4);
+        }
+        else
+        {
+            ranMat = ranMat.Substring(0, EndStr + 1);
+        }
 
         print(ranMat);
 
@@ -32,11 +41,11 @@ public class PlanetGen : MonoBehaviour {
 
     void Start()
     {
-        for (int i = 0; i < 100; i++){
+        for (int i = 0; i < 50; i++){
 
 
             GameObject planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            planet.transform.position = new Vector3(Random.Range(-200f, 200f), Random.Range(-200f, 200f), Random.Range(-200f, 200f));
+            planet.transform.position = new Vector3(Random.Range(-100f, 100f), Random.Range(-100f, 100f), Random.Range(-100f, 100f));
             float scaleFactor = Random.Range(1f, 10f);
             planet.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
             ranMaterial(planet);

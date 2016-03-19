@@ -13,18 +13,17 @@ public class BasicControl : MonoBehaviour {
 
         
 
-        Globals.rotX = Globals.rotX + 0.002f * (Input.mousePosition.x-200); //Gets mouse X
-        Globals.rotY = Globals.rotY - 0.002f * (Input.mousePosition.y-200); //Gets mouse Y
-
+        Globals.rotX = Globals.rotX + 0.0005f * (Input.mousePosition.x-500); //Gets mouse X
+        Globals.rotY = Globals.rotY - 0.001f * (Input.mousePosition.y-200); //Gets mouse Y
         
 
         if(Input.GetKeyDown("w"))
         {
-            Globals.speed = Globals.speed+0.01f;
+            Globals.speed = Globals.speed+0.02f;
         }
         if (Input.GetKeyDown("s"))
         {
-            Globals.speed = Globals.speed - 0.01f;
+            Globals.speed = Globals.speed*0.99f;
         }
         if (Input.GetKeyDown("a"))
         {
